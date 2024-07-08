@@ -203,7 +203,7 @@ check_coords <- function(coords) {
 #' @return Returns a \code{\linkS4class{SpatialRNA}} with counts filtered based on UMI threshold and gene list
 #' @export
 restrict_counts <- function(puck, gene_list, UMI_thresh = 1, UMI_max = 20000, counts_thresh = 1) {
-  counts_tot <- colSums(puck@counts[gene_list,])
+  counts_tot <- Matrix::colSums(puck@counts[gene_list,])
   keep_loc = (puck@nUMI >= UMI_thresh) & (puck@nUMI <= UMI_max) & (counts_tot >= counts_thresh)
   puck@counts = puck@counts[gene_list,keep_loc]
   puck@nUMI = puck@nUMI[keep_loc]
